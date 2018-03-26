@@ -1,0 +1,119 @@
+data clinic.admit2;  				/* Data Step */
+   set clinic.admit;  
+run; 
+proc print data=clinic.admit2;  	/* Procudure Step */
+run;
+
+proc tabulate data=clinic.admit;  
+class sex;  						/* Row */
+var height weight;  				/* Column */
+table sex*(height weight),mean;  	/* Cell value */
+run;
+
+proc copy in=clinic out=work;  		/* Copy admit dataset from clinic to work directory */
+select admit;  
+run
+
+/* SAS dataset has descriptive and data portion */
+/* Attribute: Name, type(char-32767 byte, num-8 byte), format(write), informat(read), label(256 char)*/
+1234 as $1234.00 in a report, you can use the DOLLAR8.2
+5678 as 5,678.00 in a report, you can use the COMMA8.2 
+Formats write values out 
+informats read data values
+*-----;
+
+SAS Help: Sample datasets are stored
+
+libname clinic(1-8) 'd:\users\qtr\reports';
+
+proc contents data=mylib._all_ nods;  
+run;
+
+proc datasets;  
+contents data=sasuser._all_ nods;  
+quit; 
+
+35
+
+options nonumber nodate; 
+options date;
+options nodate pageno=3;
+options pageno=1 pagesize=15;
+options pageno=1 linesize=64;
+options yearcutoff=1925;
+
+options firstobs=10 obs=15; 
+proc print data=sasuser.heart;  
+run; 
+
+proc options;  			/*To list all SAS system options, their settings */ 
+run; 
+
+Data error and syntax error
+----------
+proc print data=clinic.admit;  To get column sum
+   sum fee; 
+run;
+
+proc print data=admit label; 
+  var age height weight fee;  
+  label fee='Admission Fee'; 
+run;
+
+proc print data=clinic.admit noobs; 
+  var age height weight fee; 
+  where age>30; 
+run;
+
+= ^= > < >= <=
+
+where firstname CONTAINS 'Jon';  
+where firstname ? 'Jon'; 
+
+proc sort data=clinic.admit out=work.wgtadmit;  
+    by weight age;  
+run;
+
+proc print data=work.activity;  
+  var age height weight fee;  
+  where age>30;  
+  sum fee; 
+  by actlevel; 				Sub total
+  pageby actlevel; 
+run; 
+
+proc print data=clinic.stress double;  Double Spacing
+  var resthr maxhr rechr;  
+  where tolerance='I';  
+run;
+
+title1 'Heart Rates for Patients with'; 
+title3 'Increased Stress Tolerance Levels'; 
+proc print data=clinic.stress;  
+  var resthr maxhr rechr;  
+  where tolerance='I';  
+run;  
+
+footnote1 'Data from Treadmill Tests'; 
+footnote3 '1st Quarter Admissions'; 
+proc print data=clinic.stress;  
+  var resthr maxhr rechr;  
+  where tolerance='I';  
+run;  
+
+title1; 	Remove title1
+
+proc print data=clinic.therapy label; 
+  label walkjogrun='Walk/Jog/Run'; 		Change label
+run; 
+
+proc print data=clinic.admit;  
+  var actlevel fee;  
+  where actlevel='HIGH';  
+  format fee dollar4.; 
+run;
+
+-------
+
+filename tests 'c:\users\tmill.dat';  reference external file
+ infile tests;
