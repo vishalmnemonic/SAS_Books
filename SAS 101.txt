@@ -66,6 +66,7 @@ proc print data=clinic.admit noobs;
 run;
 
 = ^= > < >= <=
+eq ne gt lt ge le
 
 where firstname CONTAINS 'Jon';  
 where firstname ? 'Jon'; 
@@ -116,4 +117,54 @@ run;
 -------
 
 filename tests 'c:\users\tmill.dat';  reference external file
- infile tests;
+infile tests;
+ 
+filename exer 'c:\users\exer.dat';  
+data exercise;  
+  infile exer;  
+  input ID $ 1-4 Age 6-7 ActLevel $ 9-12 Sex $ 14; 
+run; 
+
+ Unlike syntax errors, invalid data errors do not cause SAS to stop processing a program. 
+ 
+ - ** * / + -
+
+ & |
+ and or
+ 
+TestDate='01jan2000'd; 
+Time='9:25't; 
+DateTime='18jan2005:9:27:05'dt
+
+data clinic.stress; 
+   input ID 1-4 Name $ 6-25 RestHr 27-29 MaxHR 31-33 
+         RecHR 35-37 TimeMin 39-40 TimeSec 42-43  
+         Tolerance $ 45;  
+   if tolerance='D'; 
+   TotalTime=(timemin*60)+timesec; 
+   datalines; 
+ 2458 Murray, W            72  185 128 12 38 D 
+ 2462 Almers, C            68  171 133 10  5 I
+ ;
+ 
+ ---------
+ 
+ Data step: Compilation phase then execution phase
+ Program data vector,  area of memory where SAS builds a data set, one observation at a time.
+ Automactic variables are created _n_ and _error_
+ end of file marker is reached where process ends
+ 
+  put 'MY NOTE: The condition was met.';
+  code= _n_= _error_=; 
+
+put 'MY NOTE: invalid value: ' _all_ ; 
+
+  if rate>0 then  
+      Interest=amount*(rate/12); 
+   else put 'DATA ERROR ' rate= _n_=;
+
+Missing numeric values are represented by periods, and missing character values are represented by blanks. 
+
+
+ 
+ 
