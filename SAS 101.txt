@@ -165,7 +165,7 @@ put 'MY NOTE: invalid value: ' _all_ ;
 
 Missing numeric values are represented by periods, and missing character values are represented by blanks. 
 
-
+-------------
 proc format lib=library;  
    value jobfmt  
          103='manager' 
