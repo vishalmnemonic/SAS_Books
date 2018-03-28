@@ -166,5 +166,44 @@ put 'MY NOTE: invalid value: ' _all_ ;
 Missing numeric values are represented by periods, and missing character values are represented by blanks. 
 
 
- 
+proc format lib=library;  
+   value jobfmt  
+         103='manager' 
+         105='text processor' 
+         111='assoc. technical writer' 
+         112='technical writer' 
+         113='senior technical writer'; 
+run;
+
+proc format lib=library;  
+   value $grade  
+         'A'='Good' 
+         'B'-'D'='Fair' 
+         'F'='Poor' 
+         'I','U'='See Instructor'; 
+run;
+
+proc format lib=library;  
+   value agefmt  
+         low-<13='child' 
+         13-<20='teenager' 
+         20-<65='adult' 
+         65-high='senior citizen' 
+         other='unknown'; 
+run;
+
+If applied to a character format, the keyword LOW includes missing character values.  
+
+data perm.empinfo;  
+   infile empdata;  
+   input @9 FirstName $5. @1 LastName $7. +7 JobTitle 3. 
+         @19 Salary comma9.; 
+   format salary comma9.2 jobtitle jobfmt.;
+   run;
+
+libname library 'c:\sas\formats\lib';  
+proc format library=library fmtlib;  list of all formats in your cataloge
+run; 
+
+
  
