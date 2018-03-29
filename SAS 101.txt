@@ -206,4 +206,56 @@ proc format library=library fmtlib;  list of all formats in your cataloge
 run; 
 
 
+------------
+
+ proc report data=flights.europe nowd; 
+ run; 
+ 
+ proc report data=flights.europe nowd;  
+   column flight orig dest mail freight revenue; 
+run;
+
+proc report data=flights.europe nowd;  
+   column flight orig dest mail freight revenue; 
+   where dest in ('LON','PAR'); 
+run; 
+
+proc report data=flights.europe nowd;  
+   where dest in ('LON','PAR'); 
+   column flight orig dest mail freight revenue; 
+   define revenue/format=dollar15.2; 
+run;
+
+proc report data=flights.europe nowd;  
+   where dest in ('LON','PAR'); 
+   column flight orig dest mail freight revenue;  
+   define revenue / format=dollar15.2;  
+   define flight / width=6; 
+   define orig / width=4 spacing=5; 
+   define dest / width=4 spacing=5; 
+run;
+
+proc report data=flights.europe nowd;  
+   where dest in ('LON','PAR');
+      column flight orig dest mail freight revenue;  
+   define revenue / format=dollar15.2;  
+   define flight / width=13'Flight Number'; 
+   define orig / width=13 spacing=5 'Flight Origin'; 
+   define dest / width=18 spacing=5 'Flight Destination'; 
+run;
+
+proc report data=flights.europe nowd headline headskip;  
+        where dest in ('LON','PAR'); 
+        column flight orig dest mail freight revenue; 
+        define revenue / mean format=dollar15.2 
+                         'Average/Revenue'; 
+        define flight / group 'Flight/Number' width=6 center; 
+        define orig / group width=6 spacing=5 'Flight/Origin' 
+                      center;  
+        define dest / group width=11 spacing=5 
+                     'Flight/Destination' center;
+run;
+
+
+
  
