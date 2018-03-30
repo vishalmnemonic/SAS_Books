@@ -256,6 +256,61 @@ proc report data=flights.europe nowd headline headskip;
                      'Flight/Destination' center;
 run;
 
+-----------
+
+proc means data=perm.survey;  
+run;
+
+proc means data=perm.survey median range; 
+run;
+
+proc means data=clinic.diabetes min max maxdec=0; 
+ run; 
+ 
+proc means data=clinic.diabetes min max maxdec=0; 
+   var age height weight; 
+run;
+
+proc means data=clinic.heart maxdec=1;  
+   var arterial heart cardiac urinary;  
+   class survive sex; 
+run;
+
+proc means data=clinic.diabetes;  
+    var age height weight; 
+    class sex; 
+    output out=work.sum_gender 
+      mean=AvgAge AvgHeight AvgWeight 
+      min=MinAge MinHeight MinWeight; 
+run;
+
+class will generate single table, but by will generate small tables
+
+proc summary data=clinic.diabetes;  
+  var age height weight;  
+  class sex;  
+  output out=work.sum_gender  
+     mean=AvgAge AvgHeight AvgWeight; 
+run;
+
+proc freq data=parts.widgets;  
+run;
+
+proc freq data=finance.loans;  
+   tables rate months; 
+run;
+
+      proc freq data=clinic.diabetes; 
+         tables weight*height; (rows*cloumn)
+         format weight wtfmt. height htfmt.; 
+run;  
+
+proc freq data=clinic.diabetes; 
+tables sex*weight / nofreq norow nocol; 
+   format weight wtfmt.; 
+run; 
+
+
 
 
  
