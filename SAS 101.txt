@@ -310,6 +310,47 @@ tables sex*weight / nofreq norow nocol;
    format weight wtfmt.; 
 run; 
 
+-----------
+
+ODS: Output Delivery System
+ods html body='c:\mydata.html'; 
+proc print data=sasuser.mydata;  
+run;  
+ods html close;
+
+ ods listing close; dont want to produce listing output
+ 
+ods html file='HTML-file-pathname'; 
+ods pdf file='PDF-file-pathname'; 
+proc print data=sasuser.admit;  
+run;  
+ods _all_ close; 
+ods listing;
+
+ods listing close;  
+ods html body='f:\admit.html'; 
+proc print data=clinic.admit label;  
+   var sex age height weight actlevel;  
+   label actlevel='Activity Level';  
+run;
+ods html close; 
+ods listing;
+
+ods listing close;  
+ods html body='c:\records\data.html' 
+         contents='c:\records\toc.html' 
+         frame='c:\records\frame.html'; 
+proc print data=clinic.admit label;  
+   var id sex age height weight actlevel;  
+   label actlevel='Activity Level';  
+run;  
+proc print data=clinic.stress2;  
+   var id resthr maxhr rechr;  
+run;  
+ods html close;  
+ods listing;
+
+
 
 
 
