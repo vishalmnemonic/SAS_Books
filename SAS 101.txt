@@ -352,6 +352,87 @@ ods listing;
 
 ----------------
 
+data clinic.stress;  
+   infile tests;  
+   input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33  
+         RecHR 35-37 TimeMin 39-40 TimeSec 42-43 
+         Tolerance $ 45; 
+   TotalTime=(timemin*60)+timesec;  
+   retain SumSec 5400; 
+   sumsec+totaltime;  
+run;
+
+data clinic.stress;  
+   infile tests; 
+   input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33 
+         RecHR 35-37 TimeMin 39-40 TimeSec 42-43  
+         Tolerance $ 45;  
+   TotalTime=(timemin*60)+timesec; 
+   retain SumSec 5400; 
+   sumsec+totaltime; 
+   if totaltime>800 then TestLength='Long'; 
+run; 
+
+In SAS, any numeric value other than 0 or missing is true, and a value of 0 or missing is false.
+
+if totaltime>800 then TestLength='Long';  
+else if 750<=totaltime<=800 then TestLength='Normal';  
+else if totaltime<750 then TestLength='Short'; 
+
+data clinic.stress;  
+       infile tests; 
+       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33 
+             RecHR 35-37 TimeMin 39-40 TimeSec 42-43  
+             Tolerance $ 45;  
+       TotalTime=(timemin*60)+timesec; 
+       retain SumSec 5400; 
+       sumsec+totaltime; 
+       length TestLength $ 6; 
+       if totaltime>800 then testlength='Long'; 
+       else if 750<=totaltime<=800 then testlength='Normal'; 
+       else if totaltime<750 then TestLength='Short'; 
+run;
+
+ if resthr<70 then delete; 
+ 
+data clinic.stress(drop=timemin timesec); 
+data clinic.stress(keep=timemin timesec); 
+
+format sumsec comma6.;
+
+data emps(keep=salary group);  
+   set sasuser.payrollmaster;  
+   length Group $ 20;  
+   select(jobcode);  
+      when ("FA1") group="Flight Attendant I"; 
+      when ("FA2") group="Flight Attendant II"; 
+      when ("FA3") group="Flight Attendant III"; 
+	        otherwise group="Other"; 
+   end;  
+run;
+
+   if totaltime>800 then 
+      do; 
+         testlength='Long'; 
+         message='Run blood panel';  
+      end; 
+   else if 750<=totaltime<=800 then testlength='Normal';  
+   else if totaltime<750 then TestLength='Short';  
+run; 
+
+data payroll;  
+   set salaries;  
+   select(payclass);  
+   when ('monthly') amt=salary;  
+   when ('hourly')  
+           do;  
+              amt=hrlywage*min(hrs,40);  
+              if hrs>40 then put 'CHECK TIMECARD'; 
+           end; 
+   otherwise put 'PROBLEM OBSERVATION';  
+   end; 
+run;
+
 
 
  
