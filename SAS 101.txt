@@ -435,4 +435,37 @@ run;
 
 --------------
 
+data lab23.drug1h; 
+   setresearch.cltrials; 
+run;
+
+data lab23.drug1h(drop=placebo uric);  
+   set research.cltrials(drop=triglyc);  
+   if sex='M' then delete;  
+   if placebo='YES';  
+   TestDate='22MAY1999'd;  
+   retain Days 30;  
+   days+1;  
+   length Retest $ 5;  
+   if cholesterol>190 then retest='YES';  
+   else if 150<=cholesterol<=190 then retest='CHECK';  
+   else if cholesterol<150 then retest='NO';  
+   label retest='Perform Cholesterol Test 2?';  
+   format enddate mmddyy10.;  
+run;
+
+data lab23.drug1h(drop=placebo);  
+   set research.cltrials(drop=triglycerides uricacid); 
+   if placebo='YES';  
+run;
+
+data work.addtoend(drop=timemin timesec);  
+   set clinic.stress2(keep=timemin timesec)end=last; 
+   TotalMin+timemin;  
+   TotalSec+timesec;  
+   TotalTime=totalmin*60+timesec;  
+   if last; 
+run;
+
+--------------
  
