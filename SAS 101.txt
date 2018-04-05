@@ -468,4 +468,51 @@ data work.addtoend(drop=timemin timesec);
 run;
 
 --------------
- 
+
+One-to-one reading : Creates observations that contain all of the variables from each contributing data set. 
+Data clinic.one2one;  
+   set clinic.patients;  
+   if age<60;  
+   set clinic.measure;  
+run;
+
+Concatenating : Appends the observations from one data set to another. 
+data clinic.concat;  
+   set clinic.therapy1999 clinic.therapy2000;  
+run; 
+
+Interleaving  : Intersperses observations from two or more data sets, based on one or more common variables. 
+data clinic.interlv;  
+   set clinic.therapy1999 clinic.therapy2000;  
+   by month;  
+run; 
+
+Match-merging : Matches observations from two or more data sets into a single observation in a new data set according to the values of a common variable.  
+data clinic.merged; 
+   merge clinic.demog clinic.visit; 
+   by id; 
+run; 
+
+data clinic.merged; 
+   merge clinic.demog(rename=(date=BirthDate)) 
+         clinic.visit(rename=(date=VisitDate)); 
+   by id;  
+run;  
+proc print data=clinic.merged;  
+run;
+
+data clinic.merged;  
+   merge clinic.demog(in=indemog 
+                      rename=(date=BirthDate)) 
+         clinic.visit(in=invisit 
+                      rename=(date=VisitDate)); 
+   by id; 
+   if indemog=1 and invisit=1; 
+run;
+
+merge clinic.demog(in=indemog 
+                    rename=(date=BirthDate)) 
+          clinic.visit(drop=weight in=invisit 
+                    rename=(date=VisitDate));
+					
+---------- 
