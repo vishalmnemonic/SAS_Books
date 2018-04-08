@@ -516,3 +516,18 @@ merge clinic.demog(in=indemog
                     rename=(date=VisitDate));
 					
 ---------- 
+
+mean(of x1-x3)
+
+ The INPUT function converts character data values to numeric values. 
+ The PUT function converts numeric data values to character values.
+ 
+ Test=input(saletest,comma9.); 
+ 
+ INPUT(source,informat)  
+PUT(source,format)
+
+data hrd.newtemp;  
+   set hrd.temp;  
+   Assignment=put(site,2.)||'/'||dept; 
+run; 
