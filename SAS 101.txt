@@ -531,3 +531,36 @@ data hrd.newtemp;
    set hrd.temp;  
    Assignment=put(site,2.)||'/'||dept; 
 run; 
+
+ January 1, 1960
+ 
+proc print data=hrd.temp;
+   format startdate enddate date9.;  
+run; 
+
+date=mdy(mon,day,yr);
+now=today();  
+now=date(); 
+curtime=time();
+day=day(date); 
+quarter=qtr(date); 
+wkday=weekday(date);
+month=month(date); 
+yr=year(date);
+
+x=intck('day',d1,d2);  
+x=intck('week',d1,d2);  
+x=intck('month',d1,d2);  
+x=intck('qtr',d1,d2);  
+x=intck('year',d1, d2); 
+
+x=intnx('interval',start- from,increment); 
+
+x=datdif('date1',date2, ACT/ACT); 
+x=yrdif('date1',date2, ACT/ACT);
+
+  Years=intck('year',hired,today()); 
+ TargetYear=intnx('year','05feb94'd,3);
+ 
+MonthX=intnx('month','01jan95'd,5,'b');
+
