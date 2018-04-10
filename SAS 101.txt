@@ -564,3 +564,6 @@ x=yrdif('date1',date2, ACT/ACT);
  
 MonthX=intnx('month','01jan95'd,5,'b');
 
+DATDIF(start_date,end_date,basis)  
+YRDIF(start_date,end_date,basis) 
+
