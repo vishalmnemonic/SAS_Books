@@ -567,3 +567,22 @@ MonthX=intnx('month','01jan95'd,5,'b');
 DATDIF(start_date,end_date,basis)  
 YRDIF(start_date,end_date,basis) 
 
+  Years=intck('year',hired,today()); 
+ TargetYear=intnx('year','05feb94'd,3);
+ 
+MonthX=intnx('month','01jan95'd,5,'b');
+
+SCAN(argument,n,delimiters)
+LastName=scan(name,1)
+
+SUBSTR(argument,position,<n>)
+substr(middlename,1,1)
+
+ MiddleInitial=substr(middlename,1,1); Give value
+ substr(region,1,3)='NNW'; Set value
+
+data hrd.newtemp(drop=address city state zip);  
+   set hrd.temp;  
+   NewAddress=trim(address)||', '||trim(city)||', '||zip;  
+run; 
+
