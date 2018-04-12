@@ -586,3 +586,27 @@ data hrd.newtemp(drop=address city state zip);
    NewAddress=trim(address)||', '||trim(city)||', '||zip;  
 run; 
 
+data hrd.newtemp(drop=address city state zip);  
+   set hrd.temp;  
+   NewAddress=catx(', ',address,city,zip);  
+run;
+
+data hrd.datapool;  
+   set hrd.temp;  
+   if index(job,'word processing') > 0;  search word processing in column job
+run; 
+
+ index(upcase(job),'WORD PROCESSING')  
+ index(lowcase(job),'word processing')
+ 
+data hrd.datapool;  
+   set hrd.temp;  
+   if find(job,'word processing','t') > 0;  
+run;
+
+ upcase(job)
+ lowcase(title) 
+ Contact=propcase(contact)
+ 
+  name=tranwrd(name,'Monroe','Manson') replace Monroe with Manson
+
