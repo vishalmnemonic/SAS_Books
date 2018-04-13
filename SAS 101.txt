@@ -610,3 +610,10 @@ run;
  
   name=tranwrd(name,'Monroe','Manson') replace Monroe with Manson
 
+  INT(argument) interger part is returned
+  ROUND(argument,round-off-unit) 
+  
+MiddleInitial=substr(scan(name,3),1,1);
+ Years=intck('year','15jun1999'd,today()); 
+ 
+ --------------
