@@ -617,3 +617,44 @@ MiddleInitial=substr(scan(name,3),1,1);
  Years=intck('year','15jun1999'd,today()); 
  
  --------------
+
+data finance.earnings;  
+   Amount=1000; 
+   Rate=.075/12;
+      do month=1 to 12; 
+      Earned+(amount+earned)*(rate); 
+    end; 
+run; 
+
+data work.earn (drop=counter); 
+       Value=2000; 
+       do counter=1 to 20; 
+            Interest=value*.075;
+			value+interest;  
+            Year+1;  
+       end; 
+run;
+
+data work.earn;  
+       Value=2000;  
+       do Year=1 to 20;  
+            Interest=value*.075;  
+            value+interest;  
+           output; 			explicit output
+       end;  
+run; 
+
+DO index-variable=5 to 1 by -1; 
+   SAS statements 
+END; 
+
+data work.earn;  
+   do year=1 to 20; 
+      Capital+2000; 
+      do month=1 to 12; 
+         Interest=capital*(.075/12); 
+         capital+interest; 
+      end; 
+   end; 
+run;
+
