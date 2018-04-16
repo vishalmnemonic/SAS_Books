@@ -658,3 +658,27 @@ data work.earn;
    end; 
 run;
 
+data work.invest;  
+   do until(Capital>=50000); 
+      capital+2000;  
+      capital+capital*.10;  
+      Year+1;  
+   end; 
+run;
+
+data work.invest;  
+   do while(Capital>=50000); 
+       capital+2000; 
+       capital+capital*.10; 
+       Year+1; 
+   end; 
+run;
+
+data work.subset;  
+   do sample=10 to 5000 by 10;  
+      set factory.widgets point=sample; 
+      output; 
+   end;  
+   stop; 
+run;
+
