@@ -682,3 +682,15 @@ data work.subset;
    stop; 
 run;
 
+-------------
+
+A SAS array is a temporary grouping of SAS variables under a single name. An array exists only for the duration of the DATA step.
+
+data work.report(drop=i);  
+   set master.temps;  
+   array wkday{7} mon tue wed thr fri sat sun; 
+   do i=1 to 7;  
+      wkday{i}=5*(wkday{i}-32)/9; 
+   end;  
+run;
+
