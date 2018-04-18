@@ -694,3 +694,6 @@ data work.report(drop=i);
    end;  
 run;
 
+array sales{4} qtr1 qtr2 qtr3 qtr4;
+array sales{4} qtr1-qtr4;
+array sales{96:99} totals96-totals99;
