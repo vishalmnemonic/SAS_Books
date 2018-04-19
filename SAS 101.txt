@@ -697,3 +697,10 @@ run;
 array sales{4} qtr1 qtr2 qtr3 qtr4;
 array sales{4} qtr1-qtr4;
 array sales{96:99} totals96-totals99;
+
+Amount Rate Term  → _NUMERIC_ 
+array sales{*} _numeric_; 
+
+FrstName LastName Address  → →→  →  _CHARACTER_ 
+array sales{*} _character_
+
