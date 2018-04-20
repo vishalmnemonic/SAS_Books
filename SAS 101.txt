@@ -704,3 +704,11 @@ array sales{*} _numeric_;
 FrstName LastName Address  → →→  →  _CHARACTER_ 
 array sales{*} _character_
 
+data work.report(drop=i);  
+   set master.temps;  
+   array wkday{7} mon tue wed thr fri sat sun; 
+   do i=1 to 7;  
+      if wkday{i}>95 then output;  
+   end;  
+run;
+
