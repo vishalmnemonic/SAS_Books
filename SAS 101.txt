@@ -712,3 +712,18 @@ data work.report(drop=i);
    end;  
 run;
 
+data work.weights(drop=i); 
+   set master.class;  
+   array wt{6} w1-w6; 
+   do i=1 to 6;  
+      wt{i}=wt{i}*2.2;  
+   end;  
+run;
+
+data work.new(drop=i); 
+   set master.synyms;  
+   array term{9} also1-also9; 
+   do i=1 to 9;  
+      if term{i} ne ' ' then output;  
+   end;  
+run;
