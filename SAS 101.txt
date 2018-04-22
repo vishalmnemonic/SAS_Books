@@ -727,3 +727,12 @@ data work.new(drop=i);
       if term{i} ne ' ' then output;  
    end;  
 run;
+
+data hrd.convert;  
+   set hrd.fitclass;  
+   array wt{*} weight1-weight6;  
+   do i=1 to dim(wt); 
+      wt{i}=wt{i}*2.2046; 
+   end;  
+run;
+
