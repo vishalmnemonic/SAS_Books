@@ -736,3 +736,14 @@ data hrd.convert;
    end;  
 run;
 
+array firstname{5} $ 24; /* Creating array */
+
+data hrd.diff;  
+   set hrd.convert;  
+   array wt{6} weight1-weight6;  
+   array WgtDiff{5};  
+   do i=1 to 5; 
+      wgtdiff{i}=wt{i+1}-wt{i}; 
+   end; 
+run;
+
