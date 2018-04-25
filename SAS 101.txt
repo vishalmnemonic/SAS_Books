@@ -747,3 +747,5 @@ data hrd.diff;
    end; 
 run;
 
+array goal{4} g1 g2 g3 g4 (9000 9300 9600 9900); Assigining values to macro
+
