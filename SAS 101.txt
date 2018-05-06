@@ -749,3 +749,28 @@ run;
 
 array goal{4} g1 g2 g3 g4 (9000 9300 9600 9900); Assigining values to macro
 
+ array col{3} $ color1-color3 ('red','green','blue');
+ 
+ array Var{4} (1 2 3 4);
+ 
+ data finance.report;  
+   set finance.qsales;  
+   array sale{4} sales1-sales4;  
+   array Goal{4} (9000 9300 9600 9900); 
+   array Achieved{4}; 
+   do i=1 to 4;  
+      achieved{i}=100*sale{i}/goal{i}; 
+   end;  
+run; 
+
+data finance.report;  
+   set finance.qsales;  
+   array sale{4} sales1-sales4;  
+   array goal{4} _temporary_ (9000 9300 9600 9900); 
+   array Achieved{4};  
+   do i=1 to 4;  
+      achieved{i}=100*sale{i}/goal{i}; 
+   end;  
+run;
+
+
