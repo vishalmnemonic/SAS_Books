@@ -773,4 +773,29 @@ data finance.report;
    end;  
 run;
 
+array new{3,4} x1-x12; 		2-D Array
+new{2,3}=0;
+
+data finance.quarters(drop=i j); 
+   set finance.monthly;  
+   array m{4,3} month1-month12;  
+   array Qtr{4};  
+   do i=1 to 4;  
+     qtr{i}=0; 
+      do j=1 to 3; 
+         qtr{i}+m{i,j}; 
+      end; 
+   end; 
+run;
+
+data work.rotate(drop=qtr1-qtr4);  Rotating the dataset
+   set finance.funddrive;  
+   array contrib{4} qtr1-qtr4;  
+   do Qtr=1 to 4;  
+      Amount=contrib{qtr}; 
+      output; 
+   end;  
+run;
+
+-------------
 
