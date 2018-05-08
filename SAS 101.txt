@@ -799,3 +799,9 @@ run;
 
 -------------
 
+ SAS provides three primary input styles—column input, formatted input, and list input.
+ 
+ input Item $ 1-13 IDnum $ 15-19 InStock 21-22  
+      BackOrd 24-25;
+	  
+
