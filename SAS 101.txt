@@ -805,3 +805,18 @@ run;
       BackOrd 24-25;
 	  
 
+The @n moves the input pointer to a specific column number.  
+ The +n moves the input pointer forward to a column number that is relative to the current position
+ 
+input @1 LastName $7.
+
+input LastName $7. @9 FirstName $5.
+
+input @9 FirstName $5. @1 LastName $7. @15 JobTitle 3.
+
+input LastName $7. +1 FirstName $5. +5 Salary comma9.
+
+input LastName $7. +1 FirstName $5. +5 Salary comma9.  @15 JobTitle 3.;
+
+You can use the notation +(-n) to move the +n pointer control backward. 
+
