@@ -837,3 +837,12 @@ Two common record formats are fixed-length records and variable-length records.
 input Dept $ 1-11 @13 Receipts comma8.;
 infile receipts pad;
 The PAD option pads each record with blanks so that all data lines have the same length.
+
+---------------
+
+data perm.survey;  
+   infile credit;  
+   input Gender $ Age Bankcard FreqBank Deptcard 
+         FreqDept; 
+run;
+
