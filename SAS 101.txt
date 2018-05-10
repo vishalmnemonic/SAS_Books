@@ -832,3 +832,8 @@ You can use the notation +(-n) to move the +n pointer control backward.
          @19 Salary comma9.; 
 run;
 
+
+Two common record formats are fixed-length records and variable-length records.
+input Dept $ 1-11 @13 Receipts comma8.;
+infile receipts pad;
+The PAD option pads each record with blanks so that all data lines have the same length.
