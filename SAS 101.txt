@@ -846,3 +846,36 @@ data perm.survey;
          FreqDept; 
 run;
 
+data perm.survey;  
+   infile credit dlm=','; 
+   input Gender $ Age Bankcard FreqBank 
+         Deptcard FreqDept; 
+run;
+
+data survey.phone;  
+   infile survey;  
+   input IDnum $ Ques1-Ques5; 
+run;
+
+data survey.stores;  
+   infile stordata;  
+   input Age (Store1-Store3) ($); 		Range of character variable
+run; 
+
+data test.scores; 
+    infile group3; 
+    input Age (Score1-Score4) (6.); 
+ run;
+ 
+data perm.survey;  
+   infile credit missover; 				Missing at the end
+   input Gender $ Age Bankcard FreqBank 
+         Deptcard FreqDept; 
+run;
+
+data perm.survey; 
+   infile credit dsd; 
+   input Gender $ Age Bankcard FreqBank 
+         Deptcard FreqDept; 
+run; 
+
