@@ -879,3 +879,50 @@ data perm.survey;
          Deptcard FreqDept; 
 run; 
 
+data perm.growth;  
+   infile citydata;  
+   length City $ 12; 		Specify length
+   input city $ Pop70 Pop80;  
+run;
+
+The ampersand (&) modifier is used to read character values that contain embedded blanks.
+The colon (:) modifier is used to read nonstandard data values and character values that are longer than eight characters, but which contain no embedded blanks.  
+
+ input Rank City &; 2 consec blanks
+  The colon (:) indicates that values are read until a blank (or other delimiter) is encountered, and then an informat is applied
+  
+  data perm.cityrank;  
+   infile topten;  
+   input Rank City & $12.  
+        Pop86 : comma.; 
+		
+data _null_;  		free format
+   set perm.finance;  
+   file 'c:\data\findat';  
+   put ssn name salary date : date9.; 
+run;
+
+data _null_;  
+   set perm.finance;  
+   file 'c:\data\findat2' dlm=','; 
+   put ssn name salary date : date9.;  
+run;
+
+data _null_
+   set perm.finance; 
+   file 'c:\data\findat2' dlm=','; 
+   put ssn name salary : comma6. date date9.; 
+run;
+
+data _null_; 
+   set perm.finance; 
+   file 'c:\data\findat2' dsd; 		value containing commas
+   put ssn name salary : comma. date : date9.; 
+run;
+
+data work.finance2;
+   infile findat2 dsd; 
+   length SSN $ 11 Name $ 9;  
+   input ssn name Salary : comma. Date date9.;  
+run;
+
