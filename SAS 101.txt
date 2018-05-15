@@ -934,3 +934,5 @@ data _null_;
 run;
 
 --------------------
+
+A SAS date value is the number of days from January 1, 1960, to the given date.
