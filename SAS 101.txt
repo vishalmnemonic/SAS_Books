@@ -926,3 +926,10 @@ data work.finance2;
    input ssn name Salary : comma. Date date9.;  
 run;
 
+data _null_;
+   set work.totals;  
+   file totaldat;  
+   put 'Sales for salesrep ' salesrep 
+       'totaled ' sales : dollar9.; 
+run;
+
